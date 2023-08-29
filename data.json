@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Computador",
+      "price": 15000
+    },
+    {
+      "id": 2,
+      "name": "Televisão",
+      "price": 2500
+    },
+    {
+      "id": 3,
+      "name": "Mouse Gamer",
+      "price": 150
+    }
+  ]
+}

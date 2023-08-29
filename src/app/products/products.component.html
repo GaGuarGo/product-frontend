@@ -13,29 +13,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Computador</td>
-            <td>R$ 15,000</td>
 
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
+        <ng-container *ngFor="let product of products">
 
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
+            <tr>
+                <th scope="row">{{product.id}}</th>
+                <td>{{product.name}}</td>
+                <td>R$ {{product.price}}</td>
 
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
+            </tr>
 
-        </tr>
+        </ng-container>
+
+
     </tbody>
 </table>
