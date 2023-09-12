@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
 
+
   baseUrl: string = "http://localhost:3000/products";
   products: Product[] = [];
 
@@ -23,6 +24,13 @@ export class ProductService {
 
   save(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUrl, product);
+  }
+
+  delete(product: Product): Observable<void> {
+
+    let url = `${this.baseUrl}/${product.id}`;
+
+    return this.http.delete<void>(url);
   }
 
 }

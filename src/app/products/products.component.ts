@@ -23,11 +23,34 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, private formBuilder: FormBuilder) {
 
     this.formGroupProduct = formBuilder.group({
-      name: ['Acer 5 Aspire'],
-      price: ['15000'],
+      name: [''],
+      price: [''],
     });
 
   }
 
+  save() {
+
+    let product = this.formGroupProduct.value;
+
+    this.productService.save(product).subscribe({
+      next: product => {
+        this.products.push(product)
+        this.formGroupProduct.reset();
+      }
+    });
+  }
+
+  remove(product: Product) {
+
+    this.productService.delete(product).subscribe({
+      next: () => {
+
+        this.products = this.products.filter((p) => p !== product);
+
+      }
+    });
+
+  }
 
 }
