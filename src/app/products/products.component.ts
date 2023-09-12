@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/products';
 import { ProductService } from '../product.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -10,6 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
+  formGroupProduct: FormGroup;
 
   ngOnInit(): void {
 
@@ -18,7 +20,12 @@ export class ProductsComponent implements OnInit {
     })
 
   }
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private formBuilder: FormBuilder) {
+
+    this.formGroupProduct = formBuilder.group({
+      name: ['Acer 5 Aspire'],
+      price: ['15000'],
+    });
 
   }
 

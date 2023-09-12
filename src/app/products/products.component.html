@@ -2,6 +2,20 @@
     Cadastrar Produtos:
 </div>
 
+<form style="padding: 10px;" [formGroup]="formGroupProduct">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome do Produto</label>
+        <input type="email" class="form-control" id="name" formControlName="name" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Preço do Produto</label>
+        <input type="text" class="form-control" id="price" formControlName="price" name="price">
+    </div>
+
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button">Cadastrar Produto</button>
+    </div>
+</form>
 
 <table class="table table-striped table-hover">
     <thead>
