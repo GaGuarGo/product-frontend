@@ -12,11 +12,9 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   formGroupProduct: FormGroup;
-  showEdit: Boolean = false;
+  submited: Boolean = false;
 
-  changeEditPage() {
-    this.showEdit = !this.showEdit;
-  }
+
 
   ngOnInit(): void {
 
@@ -36,6 +34,8 @@ export class ProductsComponent implements OnInit {
 
   save() {
 
+    this.submited = true;
+
     if (this.formGroupProduct.valid) {
       let product = this.formGroupProduct.value;
 
@@ -43,8 +43,10 @@ export class ProductsComponent implements OnInit {
         next: product => {
           this.products.push(product)
           this.formGroupProduct.reset();
+          this.submited = false;
         }
       });
+
     }
 
 

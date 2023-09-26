@@ -9,6 +9,11 @@
       "name": "Mouse",
       "price": "160",
       "id": 2
+    },
+    {
+      "name": "Monitor",
+      "price": "5150",
+      "id": 3
     }
   ]
 }
