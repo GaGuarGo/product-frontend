@@ -45,8 +45,8 @@
 
             <tr>
                 <th scope="row">{{product.id}}</th>
-                <td>{{product.name}}</td>
-                <td>R$ {{product.price}}</td>
+                <td>{{product.name }}</td>
+                <td>{{product.price | currency: 'BRL': 'symbol':'1.2-2'}}</td>
                 <td class="text-center col-2"><button class="btn btn-danger" (click)="remove(product)">Apagar</button>
                     <button class="btn btn-outline-primary" style="margin-left: 20px;">Editar</button>
                 </td>
