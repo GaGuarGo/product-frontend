@@ -6,10 +6,18 @@
     <div class="mb-3">
         <label for="name" class="form-label">Nome do Produto</label>
         <input type="email" class="form-control" id="name" formControlName="name" name="name">
+
+        <small *ngIf="name.hasError('required')" class="text-danger">O Nome é Obrigatório</small>
+        <small *ngIf="name.hasError('minlength')" class="text-danger">O Nome tem que ter pelo menos 5 Caracteres</small>
+
     </div>
     <div class="mb-3">
         <label for="price" class="form-label">Preço do Produto</label>
         <input type="text" class="form-control" id="price" formControlName="price" name="price">
+
+
+        <small *ngIf="price.hasError('required')" class="text-danger">O Preço é Obrigatório</small>
+        <small *ngIf="price.hasError('min')" class="text-danger">O Preço não pode ser negativo</small>
     </div>
 
     <div class="d-grid gap-2">
@@ -34,8 +42,12 @@
                 <th scope="row">{{product.id}}</th>
                 <td>{{product.name}}</td>
                 <td>R$ {{product.price}}</td>
-                <td><button class="btn btn-danger" (click)="remove(product)">Apagar</button></td>
+                <td class="text-center col-2"><button class="btn btn-danger" (click)="remove(product)">Apagar</button>
+                    <button class="btn btn-outline-primary" style="margin-left: 20px;"
+                        (click)="showEdit">Editar</button>
+                </td>
             </tr>
+
 
         </ng-container>
 
