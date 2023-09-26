@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/products';
 import { ProductService } from '../product.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -12,6 +12,9 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   formGroupProduct: FormGroup;
+  submited: Boolean = false;
+
+
 
   ngOnInit(): void {
 
@@ -23,22 +26,30 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, private formBuilder: FormBuilder) {
 
     this.formGroupProduct = formBuilder.group({
-      name: [''],
-      price: [''],
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      price: ['', [Validators.required, Validators.min(0)]],
     });
 
   }
 
   save() {
 
-    let product = this.formGroupProduct.value;
+    this.submited = true;
 
-    this.productService.save(product).subscribe({
-      next: product => {
-        this.products.push(product)
-        this.formGroupProduct.reset();
-      }
-    });
+    if (this.formGroupProduct.valid) {
+      let product = this.formGroupProduct.value;
+
+      this.productService.save(product).subscribe({
+        next: product => {
+          this.products.push(product)
+          this.formGroupProduct.reset();
+          this.submited = false;
+        }
+      });
+
+    }
+
+
   }
 
   remove(product: Product) {
@@ -51,6 +62,14 @@ export class ProductsComponent implements OnInit {
       }
     });
 
+  }
+
+  get name(): any {
+    return this.formGroupProduct.get("name");
+  }
+
+  get price(): any {
+    return this.formGroupProduct.get("price");
   }
 
 }
